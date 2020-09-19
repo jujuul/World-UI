@@ -1,10 +1,11 @@
 <template>
 <div class="top-nav">
     <div class="logo" @click="toggleAside">LOGO</div>
-    <div class="menu">
+    <ul class="menu">
         <li>菜单1</li>
         <li>菜单2</li>
-    </div>
+    </ul>
+    <span class="toggleAside" @click="toggleAside"></span>
 </div>
 </template>
 
@@ -15,13 +16,12 @@ import {
 } from "vue";
 export default {
     setup() {
-        const asideVisible = inject < Ref < boolean >> ("xxx");
-        console.log("topnav获取的aside为：" + asideVisible.value);
+        const asideVisible = inject < Ref < boolean >> ("asideVisible");
         const toggleAside = () => {
             asideVisible.value = !asideVisible.value;
         };
         return {
-            toggleAside
+            toggleAside,
         };
     },
 };
@@ -32,8 +32,13 @@ export default {
     background: pink;
     display: flex;
     padding: 16px;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     z-index: 10;
+    justify-content: center;
+    align-items: center;
 
     >.logo {
         max-width: 6em;
@@ -47,7 +52,32 @@ export default {
 
         >li {
             margin: 0 1em;
-            list-style: none;
+        }
+    }
+
+    >.toggleAside {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background: red;
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: none;
+    }
+
+    @media (max-width: 500px) {
+        >.meanu {
+            display: none;
+        }
+
+        >.logo {
+            margin: 0 auto;
+        }
+
+        >.toggleAside {
+            display: inline-block;
         }
     }
 }
