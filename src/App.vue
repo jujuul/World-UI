@@ -1,5 +1,7 @@
 <template>
-<router-view />
+<div class="home">
+    <router-view />
+</div>
 </template>
 
 <script lang="ts">
@@ -24,3 +26,10 @@ export default {
     },
 };
 </script>
+
+<style lang="scss" scoped>
+// .home {
+//     min-width: 860px;
+//     overflow: hidden;
+// }
+</style>>

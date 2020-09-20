@@ -1,11 +1,18 @@
 <template>
 <div class="top-nav">
-    <div class="logo" @click="toggleAside">LOGO</div>
+    <router-link to="/" class="logo">
+        <svg class="icon">
+            <use xlink:href="#icon-world" />
+        </svg>
+    </router-link>
     <ul class="menu">
-        <li>菜单1</li>
-        <li>菜单2</li>
+        <li>
+            <router-link to="/doc">文档</router-link>
+        </li>
     </ul>
-    <span class="toggleAside" @click="toggleAside"></span>
+    <svg class="toggleAside" v-if="toggleAsideButtonVisible" @click="toggleAside">
+        <use xlink:href="#icon-menu" />
+    </svg>
 </div>
 </template>
 
@@ -15,10 +22,17 @@ import {
     Ref
 } from "vue";
 export default {
+    props: {
+        toggleAsideButtonVisible: {
+            type: Boolean,
+            default: false,
+        },
+    },
     setup() {
         const asideVisible = inject < Ref < boolean >> ("asideVisible");
         const toggleAside = () => {
             asideVisible.value = !asideVisible.value;
+            console.log("点击了toggle");
         };
         return {
             toggleAside,
@@ -29,20 +43,28 @@ export default {
 
 <style lang="scss" scoped>
 .top-nav {
-    background: pink;
     display: flex;
-    padding: 16px;
+    padding: 11px 24px;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 9999;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    background: white;
 
     >.logo {
-        max-width: 6em;
         margin-right: auto;
+        display: flex;
+        align-items: center;
+
+        >svg {
+            width: 32px;
+            height: 32px;
+        }
+
     }
 
     >.menu {
@@ -59,7 +81,6 @@ export default {
         display: inline-block;
         width: 24px;
         height: 24px;
-        background: red;
         position: absolute;
         left: 16px;
         top: 50%;

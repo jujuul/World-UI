@@ -1,5 +1,6 @@
 <template>
-<button class="world-button" :class="classes">
+<button class="world-button" :class="classes" :disabled="disabled">
+    <span v-if="loading" class="world-loadingIndicator"></span>
     <slot />
 </button>
 </template>
@@ -18,16 +19,30 @@ export default {
             type: String,
             default: "normal",
         },
+        level: {
+            type: String,
+            default: "normal",
+        },
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
+        loading: {
+            type: Boolean,
+            default: false,
+        },
     },
     setup(props) {
         const {
             theme,
-            size
+            size,
+            level
         } = props;
         const classes = computed(() => {
             return {
                 [`world-theme-${theme}`]: theme,
                 [`world-size-${size}`]: size,
+                [`world-level-${level}`]: level
             };
         });
         return {
@@ -38,27 +53,31 @@ export default {
 </script>
 
 <style lang="scss">
-$h: 30px;
+$h: 32px;
 $border-color: #d9d9d9;
 $color: #333;
-$blue: #2d8cf0;
+$blue: #40a9ff;
 $radius: 4px;
+$red: #f56c6c;
+$green: #67c23a;
+$grey: #909399;
+$orange: #e6a23c;
 
 .world-button {
     box-sizing: border-box;
     height: $h;
     padding: 0 12px;
     cursor: pointer;
-    display: inline-block;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     white-space: nowrap;
-    color: white;
-    background: $blue;
-    // border: 1px solid $blue;
-    border: none;
+    background: white;
+    color: $color;
+    border: 1px solid $border-color;
     border-radius: $radius;
     box-shadow: 0 1px 0 fade-out(black, 0.95);
+    transition: background 250ms;
 
     &+& {
         margin-left: 8px;
@@ -66,133 +85,172 @@ $radius: 4px;
 
     &:hover,
     &:focus {
-        // border-color: $blue;
-        background: #40a9ff;
-        transition: background 0.25s;
+        color: $blue;
+        border-color: $blue;
     }
 
     &:focus {
         outline: none;
     }
 
-    &::-moz-full-inner {
+    &::-moz-focus-inner {
         border: 0;
     }
 
-    &.world-theme-button {
-        box-sizing: border-box;
-        height: $h;
-        padding: 0 12px;
-        cursor: pointer;
-        display: inline-block;
-        justify-content: center;
-        align-items: center;
-        white-space: nowrap;
-        color: white;
-        background: $blue;
-        // border: 1px solid $blue;
-        border: none;
-        border-radius: $radius;
-        box-shadow: 0 1px 0 fade-out(black, 0.95);
-
-        &+& {
-            margin-left: 8px;
-        }
+    &.world-theme-link {
+        border-color: transparent;
+        box-shadow: none;
+        color: $blue;
 
         &:hover,
         &:focus {
-            // border-color: $blue;
-            background: #40a9ff;
-            transition: background 0.25s;
+            color: lighten($blue, 10%);
         }
+    }
 
+    &.world-theme-text {
+        border-color: transparent;
+        box-shadow: none;
+        color: inherit;
+
+        &:hover,
         &:focus {
-            outline: none;
+            background: darken(white, 5%);
+        }
+    }
+
+    &.world-size-big {
+        font-size: 24px;
+        height: 48px;
+        padding: 0 16px;
+    }
+
+    &.world-size-small {
+        font-size: 12px;
+        height: 20px;
+        padding: 0 4px;
+    }
+
+    &.world-theme-button {
+        &.world-level-main {
+            background: $blue;
+            color: white;
+            border-color: $blue;
+
+            &:hover,
+            &:focus {
+                background: lighten($blue, 10%);
+                border-color: lighten($blue, 10%);
+            }
         }
 
-        &::-moz-full-inner {
-            border: 0;
+        &.world-level-danger {
+            background: $red;
+            border-color: $red;
+            color: white;
+
+            &:hover,
+            &:focus {
+                background: lighten($red, 10%);
+                border-color: lighten($red, 10%);
+            }
+        }
+
+        &.world-level-success {
+            background: $green;
+            border-color: $green;
+            color: white;
+
+            &:hover,
+            &:focus {
+                background: lighten($green, 10%);
+                border-color: lighten($green, 10%);
+            }
+        }
+
+        &.world-level-info {
+            background: $orange;
+            border-color: $orange;
+            color: white;
+
+            &:hover,
+            &:focus {
+                background: lighten($orange, 10%);
+                border-color: lighten($orange, 10%);
+            }
+        }
+    }
+
+    &.world-theme-link {
+        &.world-level-danger {
+            color: $red;
+
+            &:hover,
+            &:focus {
+                color: darken($red, 10%);
+            }
+        }
+    }
+
+    &.world-theme-text {
+        &.world-level-main {
+            color: $blue;
+
+            &:hover,
+            &:focus {
+                color: darken($blue, 10%);
+            }
+        }
+
+        &.world-level-danger {
+            color: $red;
+
+            &:hover,
+            &:focus {
+                color: darken($red, 10%);
+            }
         }
     }
 
     &.world-theme-button {
-        &.world-size-big {
-            font-size: 24px;
-            height: 42px;
-            padding: 0 16px;
-        }
+        &[disabled] {
+            cursor: not-allowed;
+            color: $grey;
 
-        &.world-size-small {
-            font-size: 12px;
-            height: 24px;
-            padding: 0 8px;
+            &:hover {
+                border-color: $grey;
+            }
         }
     }
-}
 
-.world-theme-link {
-    box-sizing: border-box;
-    height: $h;
-    padding: 0 12px;
-    cursor: pointer;
-    display: inline-block;
-    justify-content: center;
-    align-items: center;
-    white-space: nowrap;
-    background: none;
-    border: none;
-    color: $blue;
-    box-shadow: none;
-
-    &+& {
-        margin-left: 8px;
+    &.world-theme-link,
+    &.world-theme-text {
+        &[disabled] {
+            cursor: not-allowed;
+            color: $grey;
+        }
     }
 
-    &:hover,
-    &:focus {
-        // color: white;
-        transition: color 0.25s;
+    >.world-loadingIndicator {
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        margin-right: 4px;
+        border-radius: 8px;
+        border-color: $blue $blue $blue transparent;
+        border-style: solid;
+        border-width: 2px;
+        animation: world-spin 1s infinite linear;
     }
 
-    &:focus {
-        outline: none;
-    }
+    @keyframes world-spin {
+        0% {
+            transform: rotate(0deg);
+        }
 
-    &::-moz-full-inner {
-        border: 0;
-    }
-}
-
-.world-theme-text {
-    box-sizing: border-box;
-    height: $h;
-    padding: 0 12px;
-    cursor: pointer;
-    display: inline-block;
-    justify-content: center;
-    align-items: center;
-    white-space: nowrap;
-    background: none;
-    border: none;
-    color: $blue;
-    border-radius: $radius;
-
-    &+& {
-        margin-left: 8px;
-    }
-
-    &:hover,
-    &:focus {
-        background: #fafafa;
-        // transition: background 0.25s;
-    }
-
-    &:focus {
-        outline: none;
-    }
-
-    &::-moz-full-inner {
-        border: 0;
+        100% {
+            transform: rotate(360deg);
+        }
     }
 }
 </style>

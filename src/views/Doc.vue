@@ -1,8 +1,20 @@
 <template>
 <div class="layout">
-    <Topnav class="nav" />
+    <Topnav toggleAsideButtonVisible class="nav" />
     <div class="content">
         <aside v-if="asideVisible">
+            <h2>文档</h2>
+            <ol>
+                <li>
+                    <router-link to="/doc/introduction">介绍</router-link>
+                </li>
+                <li>
+                    <router-link to="/doc/install">安装</router-link>
+                </li>
+                <li>
+                    <router-link to="/doc/start">开始</router-link>
+                </li>
+            </ol>
             <h2>组件列表</h2>
             <ol>
                 <li>
@@ -57,8 +69,8 @@ export default {
 
     >.content {
         flex-grow: 1;
-        padding-top: 60px;
-        padding-left: 156px;
+        padding-top: 100px;
+        padding-left: 275px;
 
         @media (max-width: 500px) {
             padding-left: 0;
@@ -76,27 +88,41 @@ export default {
     >main {
         flex-grow: 1;
         padding: 16px;
-        background: lightgreen;
+        background: white;
+        margin: 0 60px;
     }
 }
 
 aside {
-    background: lightblue;
-    width: 150px;
-    padding: 16px;
+    background: white;
+    width: 275px;
+    padding: 16px 0;
     position: fixed;
     top: 0;
     left: 0;
-    padding-top: 70px;
+    margin-top: 100px;
+    z-index: 10;
     height: 100%;
+    border-right: 1px solid #d9d9d9;
 
     >h2 {
         margin-bottom: 4px;
+        padding: 0 24px;
     }
 
     >ol {
         >li {
-            padding: 4px 0;
+            >a {
+                display: block;
+                padding: 12px 24px;
+                text-decoration: none;
+            }
+
+            .router-link-active {
+                background: #e6f7ff;
+                border-right: 3px solid #1890ff;
+                color: #80c4ff;
+            }
         }
     }
 
