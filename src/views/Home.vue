@@ -8,6 +8,7 @@
             </svg>
             <h1>World UI</h1>
             <h2>WorldUI,我的UI</h2>
+            <div class="circle"></div>
             <p class="actions">
                 <a href="https://github.com/jujuul/World-UI">Github</a>
                 <router-link to="/doc" class="begin">开始</router-link>
@@ -90,6 +91,10 @@ $border-radius: 20px;
             grid-template-columns: 80px auto;
             grid-template-rows: 1fr auto;
 
+            &:hover {
+                box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            }
+
             >svg {
                 grid-area: icon;
                 width: 64px;
@@ -110,11 +115,16 @@ $border-radius: 20px;
 
 .banner {
     color: $red;
-    padding: 100px 0;
+    padding: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    h1 {
+        font-weight: 400;
+        font-size: 62px;
+    }
 
     .icon {
         width: 218px;

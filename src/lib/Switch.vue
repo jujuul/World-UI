@@ -2,7 +2,6 @@
 <button class="world-switch" :class="{'world-checked':value}" @click="toggle">
     <span></span>
 </button>
-<div>{{value}}</div>
 </template>
 
 <script lang="ts">
@@ -25,7 +24,7 @@ export default {
 </script>
 
 <style lang="scss">
-$h: 30px;
+$h: 24px;
 $h2: $h - 4px;
 
 .world-switch {

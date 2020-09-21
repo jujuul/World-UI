@@ -168,7 +168,7 @@ $orange: #e6a23c;
             }
         }
 
-        &.world-level-info {
+        &.world-level-warning {
             background: $orange;
             border-color: $orange;
             color: white;

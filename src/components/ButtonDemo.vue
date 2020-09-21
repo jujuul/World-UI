@@ -36,7 +36,7 @@
         <Button>普通按钮</Button>
         <Button level="danger">危险按钮</Button>
         <Button level="success">成功按钮</Button>
-        <Button level="info">警告按钮</Button>
+        <Button level="warning">警告按钮</Button>
     </div>
     <div class="hr">
         <div class="hr-text">按钮尺寸</div>
