@@ -1,80 +1,31 @@
 <template>
 <h1>Button 按钮</h1>
-<br />
-<p>常用的操作按钮</p>
-<br />
-<h1>代码示例</h1>
-<br />
-<h2>不同种类</h2>
-<div class="card">
-    <div class="top">
-        <Button>Default</Button>
-        <Button theme="link">link</Button>
-        <Button theme="text">text</Button>
-    </div>
-    <div class="hr">
-        <div class="hr-text">按钮类型</div>
-    </div>
-    <div class="bottom">按钮有三种类型：默认按钮、链接、文本按钮。</div>
-</div>
-<h2>不同尺寸</h2>
-<div class="card">
-    <div class="top">
-        <Button size="big">大按钮</Button>
-        <Button>中等按钮</Button>
-        <Button size="small">小按钮</Button>
-    </div>
-    <div class="hr">
-        <div class="hr-text">按钮尺寸</div>
-    </div>
-    <div class="bottom">按钮有三种尺寸：大按钮、中等按钮、小按钮。</div>
-</div>
-<h2>不同状态</h2>
-<div class="card">
-    <div class="top">
-        <Button level="main">主要按钮</Button>
-        <Button>普通按钮</Button>
-        <Button level="danger">危险按钮</Button>
-        <Button level="success">成功按钮</Button>
-        <Button level="warning">警告按钮</Button>
-    </div>
-    <div class="hr">
-        <div class="hr-text">按钮尺寸</div>
-    </div>
-    <div class="bottom">按钮有五种状态：主要按钮、普通按钮、危险按钮、成功按钮、警告按钮。</div>
-</div>
-<h2>禁用状态</h2>
-<br>
-<p>按钮处于禁用状态</p>
-<div class="card">
-    <div class="top">
-        <Button disabled>禁用按钮</Button>
-        <Button theme="link" disabled>禁用链接按钮</Button>
-        <Button theme="text" disabled>禁用按钮</Button>
-    </div>
-</div>
-<h2>加载中</h2>
-<br>
-<p>点击按钮后进行数据加载操作，在按钮上显示加载状态。</p>
-<div class="card">
-    <div class="top">
-        <Button loading>加载中</Button>
-    </div>
-</div>
+<h4>常用的操作按钮。</h4>
+<Demo :component="Button1Demo" />
+<Demo :component="Button4Demo" />
+<Demo :component="Button2Demo" />
+<Demo :component="Button3Demo" />
+<Demo :component="Button5Demo" />
 </template>
 
 <script lang="ts">
-import Button from "../lib/Button.vue";
+import Demo from "./Demo.vue";
+import Button1Demo from "./Button1.demo.vue";
+import Button2Demo from "./Button2.demo.vue";
+import Button3Demo from "./Button3.demo.vue";
+import Button4Demo from "./Button4.demo.vue";
+import Button5Demo from "./Button5.demo.vue";
 export default {
     components: {
-        Button,
+        Demo,
     },
     setup() {
-        const onClick = () => {
-            console.log("hi");
-        };
         return {
-            onClick,
+            Button1Demo,
+            Button2Demo,
+            Button3Demo,
+            Button4Demo,
+            Button5Demo,
         };
     },
 };

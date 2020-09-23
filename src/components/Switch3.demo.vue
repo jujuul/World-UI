@@ -1,7 +1,7 @@
-<demo>禁用状态
+<demo>不同大小
 </demo>
 <template>
-<Switch v-model:value="bool" disabled />
+<Switch v-model:value="bool" size="small" />
 </template>
 
 <script lang="ts">

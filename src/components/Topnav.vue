@@ -49,7 +49,7 @@ export default {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 9999;
+    z-index: 10;
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
@@ -63,6 +63,8 @@ export default {
         >svg {
             width: 32px;
             height: 32px;
+            position: relative;
+            left: 32px;
         }
 
     }

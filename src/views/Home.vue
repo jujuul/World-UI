@@ -29,14 +29,14 @@
                     <use xlink:href="#icon-Typescript" />
                 </svg>
                 <h3>基于 TypeScript</h3>
-                <p>源代码采用 TypeScript 书写（非严格检查）</p>
+                <p>使用了一点 TypeScript</p>
             </li>
             <li>
                 <svg class="icon">
                     <use xlink:href="#icon-shu_1" />
                 </svg>
                 <h3>代码易读</h3>
-                <p>每个组件的源代码都极其简洁</p>
+                <p>简洁的易用不易写</p>
             </li>
         </ul>
     </div>
@@ -53,8 +53,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$green: #02bcb0;
 $red: #e64a58;
 $border-radius: 20px;
+$color: #007974;
 
 .topnavAndBanner {
     background: linear-gradient(135deg,
@@ -65,7 +67,7 @@ $border-radius: 20px;
 
 .features {
     margin: 64px auto;
-    width: 400px;
+    padding: 0 16px;
 
     @media (min-width: 800px) {
         width: 800px;
@@ -73,6 +75,12 @@ $border-radius: 20px;
 
     @media (min-width: 1200px) {
         width: 1200px;
+
+        >ul {
+            >li {
+                width: 33.33333%;
+            }
+        }
     }
 
     >ul {
@@ -80,7 +88,6 @@ $border-radius: 20px;
         flex-wrap: wrap;
 
         >li {
-            width: 400px;
             margin: 16px 0;
             display: grid;
             justify-content: start;
@@ -90,10 +97,6 @@ $border-radius: 20px;
                 "icon text";
             grid-template-columns: 80px auto;
             grid-template-rows: 1fr auto;
-
-            &:hover {
-                box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-            }
 
             >svg {
                 grid-area: icon;
@@ -108,6 +111,32 @@ $border-radius: 20px;
 
             >p {
                 grid-area: text;
+            }
+        }
+    }
+}
+
+.banner {
+    color: $color;
+    padding: 100px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    >.actions {
+        padding: 8px 0;
+
+        a {
+            margin: 0 8px;
+            background: $green;
+            color: white;
+            display: inline-block;
+            padding: 8px 24px;
+            border-radius: $border-radius;
+
+            &:hover {
+                text-decoration: none;
             }
         }
     }

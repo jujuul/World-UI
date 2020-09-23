@@ -23,6 +23,10 @@ export default {
             type: String,
             default: "normal",
         },
+        shape: {
+            type: String,
+            default: "plain",
+        },
         disabled: {
             type: Boolean,
             default: false,
@@ -36,13 +40,15 @@ export default {
         const {
             theme,
             size,
-            level
+            level,
+            shape
         } = props;
         const classes = computed(() => {
             return {
                 [`world-theme-${theme}`]: theme,
                 [`world-size-${size}`]: size,
-                [`world-level-${level}`]: level
+                [`world-level-${level}`]: level,
+                [`world-shape-${shape}`]: shape,
             };
         });
         return {
@@ -62,6 +68,10 @@ $red: #f56c6c;
 $green: #67c23a;
 $grey: #909399;
 $orange: #e6a23c;
+$disblue: #a0cfff;
+$disgreen: #b3e19d;
+$disorange: #f3d19e;
+$disred: #fab6b6;
 
 .world-button {
     box-sizing: border-box;
@@ -119,6 +129,10 @@ $orange: #e6a23c;
         }
     }
 
+    &.world-shape-round {
+        border-radius: 20px;
+    }
+
     &.world-size-big {
         font-size: 24px;
         height: 48px;
@@ -142,6 +156,18 @@ $orange: #e6a23c;
                 background: lighten($blue, 10%);
                 border-color: lighten($blue, 10%);
             }
+
+            &[disabled] {
+                border-color: $disblue;
+                background: $disblue;
+                color: white;
+
+                &:hover,
+                &:focus {
+                    background: $disblue;
+                    border-color: $disblue;
+                }
+            }
         }
 
         &.world-level-danger {
@@ -154,12 +180,36 @@ $orange: #e6a23c;
                 background: lighten($red, 10%);
                 border-color: lighten($red, 10%);
             }
+
+            &[disabled] {
+                border-color: $disred;
+                background: $disred;
+                color: white;
+
+                &:hover,
+                &:focus {
+                    background: $disred;
+                    border-color: $disred;
+                }
+            }
         }
 
         &.world-level-success {
             background: $green;
             border-color: $green;
             color: white;
+
+            &[disabled] {
+                border-color: $disgreen;
+                background: $disgreen;
+                color: white;
+
+                &:hover,
+                &:focus {
+                    background: $disgreen;
+                    border-color: $disgreen;
+                }
+            }
 
             &:hover,
             &:focus {
@@ -172,6 +222,18 @@ $orange: #e6a23c;
             background: $orange;
             border-color: $orange;
             color: white;
+
+            &[disabled] {
+                border-color: $disorange;
+                background: $disorange;
+                color: white;
+
+                &:hover,
+                &:focus {
+                    background: $disorange;
+                    border-color: $disorange;
+                }
+            }
 
             &:hover,
             &:focus {
@@ -220,6 +282,10 @@ $orange: #e6a23c;
             &:hover {
                 border-color: $grey;
             }
+        }
+
+        &[circle] {
+            border-radius: 50%;
         }
     }
 
