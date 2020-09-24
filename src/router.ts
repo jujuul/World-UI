@@ -5,8 +5,8 @@ import SwitchDemo from "./components/SwitchDemo.vue";
 import ButtonDemo from "./components/ButtonDemo.vue";
 import DialogDemo from "./components/DialogDemo.vue";
 import TabsDemo from "./components/TabsDemo.vue";
-import DocDemo from "./components/DocDemo.vue";
 import Markdown from "./components/Markdown.vue";
+import AlertDemo from "./components/AlertDemo.vue";
 import { h } from "vue";
 const md = (filename) =>
   h(Markdown, { path: `../markdown/${filename}.md`, key: filename });
@@ -27,6 +27,7 @@ export const router = createRouter({
         { path: "button", component: ButtonDemo },
         { path: "dialog", component: DialogDemo },
         { path: "tabs", component: TabsDemo },
+        { path: "alert", component: AlertDemo },
       ],
     },
   ],

@@ -27,10 +27,6 @@ export default {
             type: String,
             default: "plain",
         },
-        disabled: {
-            type: Boolean,
-            default: false,
-        },
         loading: {
             type: Boolean,
             default: false,
@@ -307,6 +303,7 @@ $disred: #fab6b6;
         border-style: solid;
         border-width: 2px;
         animation: world-spin 1s infinite linear;
+        cursor: default;
     }
 
     @keyframes world-spin {
