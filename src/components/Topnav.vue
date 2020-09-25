@@ -34,6 +34,7 @@ export default {
             asideVisible.value = !asideVisible.value;
             console.log("点击了toggle");
         };
+
         return {
             toggleAside,
         };
@@ -66,7 +67,6 @@ export default {
             position: relative;
             left: 32px;
         }
-
     }
 
     >.menu {
